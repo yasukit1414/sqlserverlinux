@@ -14,23 +14,3 @@ select avg(velocity),floor(@Location.STDistance(geo)/5000)*5000 as distance from
 where @Location.STDistance(geo) < 1000000 
 group by floor(@Location.STDistance(geo)/5000)
 order by distance
-
-
-DECLARE @Location geometry
-set @Location=geometry::STGeomFromText('POINT(135.757800 34.985460)',4326)
-select @Location.STWithin((select ogr_geometry from japan_ver81)) 
-
-SET @geom = GEOMETRY::STGeomFromText(@geo.STAsText(),@geo.STSrid);
-SET @geo = GEOGRAPHY::STGeomFromText(@geom.STAsText(),@geom.STSrid);
-
-
-
-
-with maxgeo(geo_express)
-as
-(
-select velocity,geo.STAsText() from expresslog
-where velocity= (select max(velocity) from expresslog)
-)
-
-
