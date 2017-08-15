@@ -1,0 +1,1 @@
+ALTER TABLE expresslog ADD CONSTRAINT expresslog_pk PRIMARY KEY (dataID)
